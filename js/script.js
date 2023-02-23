@@ -16,42 +16,67 @@ function getComputerChoice() {
 function playerSelection() {
     // Get player to input 'rock, paper, or scissors (case-insensitive)
     // Use if to compare and decide whether win or lose
-    playerInput = prompt ('Rock, paper or scissors?');
-    return playerInput.toLowerCase();
+    playerSelection = prompt ('Rock, paper or scissors?');
 }
 
 function playGame(playerInput, randomGenerated) {
     if (playerInput.toLowerCase() == 'rock' && randomGenerated == 'Paper'){
-        console.log ("You lose!");
+        return ("You lose! Paper beats Rock!");
+
     }
     else if (playerInput.toLowerCase() == 'paper' && randomGenerated == 'Scissors'){
-        console.log ("You lose!");
+        return ("You lose! Scissors beats Paper!");
     }
     else if (playerInput.toLowerCase() == 'scissors' && randomGenerated == 'Rock'){
-        console.log ("You lose!");
+        return ("You lose! Rock beats Scissors!");
     }
     else if (playerInput.toLowerCase() == 'rock' && randomGenerated == 'Scissors'){
-        console.log ("You win!");
+        return ("You win! Rock beats Scissors!");
     }
     else if (playerInput.toLowerCase() == 'paper' && randomGenerated == 'Rock'){
-        console.log ("You win!");
+        return ("You win! Paper beats Rock!");
     }
     else if (playerInput.toLowerCase() == 'scissors' && randomGenerated == 'Paper'){
-        console.log ("You win!");
+        return ("You win! Scissors beats Paper!");
     }
     else if (playerInput.toLowerCase() == 'rock' && randomGenerated== 'Rock'){
-        console.log ("It's a tie!");
+        return ("It's a tie!");
     }
     else if (playerInput.toLowerCase() == 'paper' && randomGenerated == 'Paper'){
-        console.log ("It's a tie!");
+        return ("It's a tie!");
     }
     else if (playerInput.toLowerCase() == 'scissors' && randomGenerated == 'Scissors'){
-        console.log ("It's a tie!");
+         return ("It's a tie!");
     }
-}
+};
 
-let result;
-getComputerChoice();
-console.log (randomGenerated);
-playerSelection();
-playGame(playerInput, randomGenerated);
+function game() {
+    for (let i = 0; i < 5; i++){
+        randomGenerated = getComputerChoice();
+        console.log (randomGenerated);
+        playerInput = prompt('Rock, papers, or scissors?');
+        result = playGame(playerInput,randomGenerated);
+        console.log (result);
+        if (result.includes("You lose")){
+            loseCount += 1;
+         } else if (result.includes("You win")){
+            winCount += 1;
+         }
+        }
+    };
+
+
+    function count(){
+        if (winCount < loseCount){
+            console.log ("You are the loser! The computer wins!");
+         } else if (winCount > loseCount){
+            console.log ("You are the winner! The computer loses!");
+         }
+        };
+
+let playerInput;
+let randomGenerated;
+let loseCount = 0;
+let winCount = 0;
+game();
+count();

@@ -10,24 +10,34 @@ const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
 const div = document.querySelector('#message');
 const win = document.querySelector('#win');
+const lose = document.querySelector('#lose');
+const announcement = document.querySelector('#announcement');
+
 let winCount = 0;
+let loseCount = 0;
+div.innerHTML = `Please select rock, papers or scissors`
+win.innerHTML = `Wins: ${winCount}`;
+lose.innerHTML = `Loses: ${loseCount}`;
+announcement.innerHTML = `Win 5 rounds to defeat the super computer!`
 
 // add 'click' event listener to each buttons
 rock.addEventListener('click', () => {
     let randomGenerated = getComputerChoice();
     let message = playGame('rock', randomGenerated);
     div.innerHTML = message;
-    game(message, winCount);
+    game(message);
 });
 paper.addEventListener('click', () => {
     let randomGenerated = getComputerChoice();
     let message = playGame('paper', randomGenerated);
     div.innerHTML = message;
+    game(message);
 });
 scissors.addEventListener('click', () => {
     let randomGenerated = getComputerChoice();
     let message = playGame('scissors', randomGenerated);
     div.innerHTML = message;
+    game(message);
 });
 
 function getComputerChoice() {
@@ -80,37 +90,18 @@ function playGame(playerInput, randomGenerated) {
     function game(message) {
         if (message.includes("You win")){
             winCount += 1;
-            win.innerHTML = winCount;
-         }
-    }
-
-/* function game() {
-    for (let i = 0; i < 5; i++){
-        randomGenerated = getComputerChoice();
-        console.log (randomGenerated);
-        playerInput = prompt('Rock, papers, or scissors?');
-        result = playGame(playerInput,randomGenerated);
-        console.log (result);
-        if (result.includes("You lose")){
+            win.innerHTML = `Wins: ${winCount}`;
+        }   else if (message.includes("You lose")){
             loseCount += 1;
-         } else if (result.includes("You win")){
-            winCount += 1;
-         }
+            lose.innerHTML = `Loses: ${loseCount}`;
         }
-    }; */
-
-/* 
-    function count(){
-        if (winCount < loseCount){
-            console.log ("You are the loser! The computer wins!");
-         } else if (winCount > loseCount){
-            console.log ("You are the winner! The computer loses!");
-         }
-        };
-
-let playerInput;
-let randomGenerated;
-let loseCount = 0;
-let winCount = 0;
-game();
-count(); */
+        if (winCount === 5){
+            announcement.innerHTML = `Congratulations! You have won against the supercomputer!`
+            alert ("Congratulations! You win!");
+            rock.disabled = true; paper.disabled = true; scissors.disabled = true;
+        }   else if (loseCount === 5){
+            announcement.innerHTML = `Defeated! You have lost against the super computer!`
+            alert ("Better luck next time! You lost!")
+            rock.disabled = true; paper.disabled = true; scissors.disabled = true;
+        }
+    };

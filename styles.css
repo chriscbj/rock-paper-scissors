@@ -2,7 +2,8 @@ div.buttons {
     background-color: #2326;
     display: flex;
     justify-content: space-evenly;
-    padding: 20px;
+    padding: 30px;
+    font-size: 40px;
 }
 
 div.container {
@@ -10,7 +11,7 @@ div.container {
     display: flex;
     flex-direction: column;
     padding: 14px;
-    font-size: 24px;
+    font-size: 50px;
     text-align: center;
 }
 
@@ -21,6 +22,12 @@ div.counter {
 
 div#message {
     margin-bottom: 24px;
+}
+
+div#win, div#lose{
+    border: 5px solid black;
+    font-size: 50px;
+    padding: 20px;
 }
 
 div#announcement {

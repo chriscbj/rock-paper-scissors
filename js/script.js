@@ -1,8 +1,34 @@
 // Get AI to randomly return either 'rock, paper, scissors' and store in a variable - getComputerChoice()
-// Get player to input either 'rock, paper, scissors' and store in variable - playerSelection
+// Get player to input either 'rock, paper, scissors' and store in variable - playerSelection()
 
 // What input?
 // What output?
+
+// select buttons and win counter
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+const div = document.querySelector('#message');
+const win = document.querySelector('#win');
+let winCount = 0;
+
+// add 'click' event listener to each buttons
+rock.addEventListener('click', () => {
+    let randomGenerated = getComputerChoice();
+    let message = playGame('rock', randomGenerated);
+    div.innerHTML = message;
+    game(message, winCount);
+});
+paper.addEventListener('click', () => {
+    let randomGenerated = getComputerChoice();
+    let message = playGame('paper', randomGenerated);
+    div.innerHTML = message;
+});
+scissors.addEventListener('click', () => {
+    let randomGenerated = getComputerChoice();
+    let message = playGame('scissors', randomGenerated);
+    div.innerHTML = message;
+});
 
 function getComputerChoice() {
     // create an array
@@ -50,7 +76,15 @@ function playGame(playerInput, randomGenerated) {
     }
 };
 
-function game() {
+
+    function game(message) {
+        if (message.includes("You win")){
+            winCount += 1;
+            win.innerHTML = winCount;
+         }
+    }
+
+/* function game() {
     for (let i = 0; i < 5; i++){
         randomGenerated = getComputerChoice();
         console.log (randomGenerated);
@@ -63,9 +97,9 @@ function game() {
             winCount += 1;
          }
         }
-    };
+    }; */
 
-
+/* 
     function count(){
         if (winCount < loseCount){
             console.log ("You are the loser! The computer wins!");
@@ -79,4 +113,4 @@ let randomGenerated;
 let loseCount = 0;
 let winCount = 0;
 game();
-count();
+count(); */
